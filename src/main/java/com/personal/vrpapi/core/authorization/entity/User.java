@@ -41,4 +41,7 @@ public class User extends AbstractEntity {
     @JoinColumn(name = "role_id")
     private Role role;
 
+    @Column
+    private Boolean isActive;
+
 }
