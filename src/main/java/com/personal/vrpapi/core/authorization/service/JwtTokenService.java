@@ -1,6 +1,6 @@
 package com.personal.vrpapi.core.authorization.service;
 
-import com.personal.vrpapi.core.authorization.entity.User;
+import com.personal.vrpapi.core.base.entity.AbstractUser;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -13,7 +13,7 @@ public interface JwtTokenService {
 
     String getUserNameFromJwtToken(String token);
 
-    User getCurrentUser();
+    AbstractUser getCurrentUser();
 
     List<SimpleGrantedAuthority> getRolesFromToken(String authToken);
 }

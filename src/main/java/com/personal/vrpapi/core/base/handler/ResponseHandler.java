@@ -21,6 +21,6 @@ public class ResponseHandler implements ResponseBodyAdvice {
         if (body instanceof String) {
             return body;
         }
-        return Response.builder().data(body);
+        return Response.builder().data(body).build();
     }
 }

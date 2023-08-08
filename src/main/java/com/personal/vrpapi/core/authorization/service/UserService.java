@@ -10,5 +10,5 @@ public interface UserService {
 
     JwtResponse authentication(LoginRequest loginRequest, RoleEnum roleEnum);
 
-    UserData createUser(CreateUserRequest userReques, RoleEnum roleEnum);
+    UserData createUser(CreateUserRequest userRequest, RoleEnum roleEnum);
 }

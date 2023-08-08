@@ -54,7 +54,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //                .antMatchers("/me", "/carts", "/carts/*").hasAnyRole("ADMIN","CUSTOMER")
 //                .antMatchers("/login","/register","/admin/login").permitAll().anyRequest().authenticated()
                 .authorizeRequests()
-                .anyRequest().authenticated()
+                .anyRequest().permitAll()
                 .and().exceptionHandling()
                 .authenticationEntryPoint(unauthorizedHandler).and().
                 sessionManagement()

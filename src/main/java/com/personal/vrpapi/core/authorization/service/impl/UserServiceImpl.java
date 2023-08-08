@@ -5,11 +5,11 @@ import com.personal.vrpapi.core.authorization.dto.request.CreateUserRequest;
 import com.personal.vrpapi.core.authorization.dto.request.LoginRequest;
 import com.personal.vrpapi.core.authorization.dto.response.JwtResponse;
 import com.personal.vrpapi.core.authorization.dto.response.UserData;
-import com.personal.vrpapi.core.authorization.entity.User;
 import com.personal.vrpapi.core.authorization.enums.RoleEnum;
-import com.personal.vrpapi.core.authorization.repository.UserRepository;
+import com.personal.vrpapi.core.authorization.repository.AbstractUserRepository;
 import com.personal.vrpapi.core.authorization.service.JwtTokenService;
 import com.personal.vrpapi.core.authorization.service.UserService;
+import com.personal.vrpapi.core.base.entity.AbstractUser;
 import com.personal.vrpapi.core.base.exception.BaseException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -23,7 +23,6 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.Date;
-import java.util.Objects;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -32,7 +31,7 @@ public class UserServiceImpl implements UserService {
     private AuthenticationManager authenticationManager;
 
     @Resource
-    private UserRepository userRepository;
+    private AbstractUserRepository userRepository;
 
     @Resource
     private UserDetailsService userDetailsService;
@@ -60,10 +59,10 @@ public class UserServiceImpl implements UserService {
         } catch (Exception e) {
             throw new BaseException("Exception : " +  e.getMessage());
         }
-        User user = userRepository.findByUserName(loginRequest.getUsername());
+        AbstractUser user = userRepository.findByUserName(loginRequest.getUsername());
 
         if (!roleEnum.equals(user.getRole().getRoleName())){
-            throw new BadCredentialsException("User can not access");
+            throw new BadCredentialsException("UnAuthorized!");
         }
 
         final UserDetails userDetails = userDetailsService
@@ -77,14 +76,14 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserData createUser(CreateUserRequest userRequest, RoleEnum roleEnum) {
-        User user = userRepository.findByUserName(userRequest.getUsername());
-        if (Objects.isNull(user)){
-            user = userConverter.convertUserRequestToUser(userRequest, roleEnum);
-            user.setPassword(passwordEncoder.encode(userRequest.getPassword()));
-            userRepository.save(user);
+        AbstractUser user = userRepository.findByUserName(userRequest.getUsername());
+//        if (Objects.isNull(user)){
+//            user = userConverter.convertUserRequestToUser(userRequest, roleEnum);
+//            user.setPassword(passwordEncoder.encode(userRequest.getPassword()));
+//            userRepository.save(user);
             return userConverter.convertUserToUserData(user);
-        } else {
-            throw new BaseException("Username is existed");
-        }
+//        } else {
+//            throw new BaseException("Username is existed");
+//        }
     }
 }

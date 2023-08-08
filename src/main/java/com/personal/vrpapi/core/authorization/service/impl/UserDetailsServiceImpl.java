@@ -1,8 +1,8 @@
 package com.personal.vrpapi.core.authorization.service.impl;
 
-import com.personal.vrpapi.core.authorization.entity.User;
 import com.personal.vrpapi.core.authorization.entity.UserPrincipal;
-import com.personal.vrpapi.core.authorization.repository.UserRepository;
+import com.personal.vrpapi.core.authorization.repository.AbstractUserRepository;
+import com.personal.vrpapi.core.base.entity.AbstractUser;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -15,11 +15,11 @@ import java.util.Objects;
 public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Resource
-    private UserRepository userRepository;
+    private AbstractUserRepository userRepository;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userRepository.findByUserName(username);
+        AbstractUser user = userRepository.findByUserName(username);
         if (Objects.isNull(user)) {
             throw new UsernameNotFoundException("Username not found");
         }

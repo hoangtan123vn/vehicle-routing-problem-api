@@ -1,9 +1,9 @@
 package com.personal.vrpapi.core.authorization.service.impl;
 
-import com.personal.vrpapi.core.authorization.entity.User;
 import com.personal.vrpapi.core.authorization.enums.RoleEnum;
-import com.personal.vrpapi.core.authorization.repository.UserRepository;
+import com.personal.vrpapi.core.authorization.repository.AbstractUserRepository;
 import com.personal.vrpapi.core.authorization.service.JwtTokenService;
+import com.personal.vrpapi.core.base.entity.AbstractUser;
 import com.personal.vrpapi.core.base.exception.BaseException;
 import io.jsonwebtoken.*;
 import org.slf4j.Logger;
@@ -31,7 +31,7 @@ public class JwtTokenServiceImpl implements JwtTokenService {
     private int jwtExpirationInMs;
 
     @Resource
-    private UserRepository userRepository;
+    private AbstractUserRepository userRepository;
 
     @Resource
     private Map<RoleEnum, String> roleEnumMap;
@@ -84,7 +84,7 @@ public class JwtTokenServiceImpl implements JwtTokenService {
     }
 
     @Override
-    public User getCurrentUser(){
+    public AbstractUser getCurrentUser(){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         Object principal = authentication.getPrincipal();
         if (principal instanceof UserDetails userDetails) {

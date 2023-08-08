@@ -1,5 +1,6 @@
 package com.personal.vrpapi.core.authorization.entity;
 
+import com.personal.vrpapi.core.base.entity.AbstractUser;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,7 +22,7 @@ public class UserPrincipal implements UserDetails {
 
     private Collection<? extends GrantedAuthority> authorities;
 
-    private User user;
+    private AbstractUser user;
 
     public UserPrincipal(String username, String password, Collection<? extends GrantedAuthority> authorities) {
         this.username = username;
@@ -29,7 +30,7 @@ public class UserPrincipal implements UserDetails {
         this.authorities = authorities;
     }
 
-    public static UserPrincipal createUser(final User user){
+    public static UserPrincipal createUser(final AbstractUser user){
         GrantedAuthority authority = new SimpleGrantedAuthority(String.valueOf(user.getRole().getRoleName()));
         return new UserPrincipal(user.getUserName(), user.getPassword(), Collections.singletonList(authority));
     }

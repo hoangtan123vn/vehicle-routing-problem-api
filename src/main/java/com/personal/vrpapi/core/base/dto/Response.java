@@ -1,15 +1,21 @@
 package com.personal.vrpapi.core.base.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+import java.io.Serializable;
+
+@Getter
+@Setter
 @AllArgsConstructor
-@NoArgsConstructor
 @Builder
-public class Response {
+public class Response implements Serializable {
 
+    private static final long serialVersionUID = 1L;
+
+    @JsonProperty("data")
     private Object data;
 }

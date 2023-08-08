@@ -2,7 +2,7 @@ package com.personal.vrpapi.core.authorization.entity;
 
 import com.personal.vrpapi.core.authorization.enums.RoleEnum;
 import com.personal.vrpapi.core.base.entity.AbstractEntity;
-import lombok.AllArgsConstructor;
+import com.personal.vrpapi.core.base.entity.AbstractUser;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -17,18 +17,13 @@ import java.util.List;
 @FieldNameConstants
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
 public class Role extends AbstractEntity {
-
-    public Role(RoleEnum role) {
-        this.roleName = role;
-    }
 
     @Column
     @Enumerated(EnumType.STRING)
     private RoleEnum roleName;
 
-    @OneToMany(mappedBy = User.Fields.role, fetch = FetchType.LAZY)
-    private List<User> users = new ArrayList<>();
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = AbstractUser.Fields.role)
+    private List<AbstractUser> users = new ArrayList<>();
 }
