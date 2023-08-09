@@ -14,7 +14,7 @@ public class GoogleServiceImpl extends AbstractService implements GoogleService 
     private GoogleProperties properties;
 
     @Override
-    public Long getDistance(String origin, String destination) {
+    public Long getSingleDistance(String origin, String destination) {
         return null;
     }
 
