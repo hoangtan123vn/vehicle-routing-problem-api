@@ -12,21 +12,27 @@ import lombok.NoArgsConstructor;
 @Builder
 public class AddDepotRequest {
 
-    @JsonProperty("line1")
+    @JsonProperty(value = "lat")
+    private Double lat;
+
+    @JsonProperty(value = "lng")
+    private Double lng;
+
+    @JsonProperty(value ="line1")
     private String line1;
 
-    @JsonProperty("line2")
+    @JsonProperty(value ="line2")
     private String line2;
 
-    @JsonProperty("district")
+    @JsonProperty(value ="district")
     private String district;
 
-    @JsonProperty("city")
+    @JsonProperty(value ="city")
     private String city;
 
-    @JsonProperty("line1")
+    @JsonProperty(value ="zipCode")
     private String zipCode;
 
-    @JsonProperty("line1")
+    @JsonProperty(value ="country")
     private String country;
 }

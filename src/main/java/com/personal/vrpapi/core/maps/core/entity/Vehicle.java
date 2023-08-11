@@ -32,6 +32,10 @@ public class Vehicle extends AbstractEntity {
     private Driver driver;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "depot")
+    @JoinColumn
     private Depot depot;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn
+    private Map map;
 }

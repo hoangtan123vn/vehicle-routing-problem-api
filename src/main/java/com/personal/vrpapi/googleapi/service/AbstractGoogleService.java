@@ -10,24 +10,34 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpMethod;
 
+import java.util.Objects;
+
 public abstract class AbstractGoogleService {
 
     private static final ObjectMapper objectMapper = new ObjectMapper();
 
     private static final Logger LOGGER = LoggerFactory.getLogger(AbstractGoogleService.class);
 
-    protected Response executeRequest(final String endpoint, final RequestBody requestBody,
-                                      final HttpMethod httpMethod) {
+    protected <T> T executeRequest(final String endpoint, final RequestBody requestBody,
+                                      final HttpMethod httpMethod, final Class<T> clazz) {
         try {
             OkHttpClient client = new OkHttpClient().newBuilder()
                     .build();
             Request request = new Request.Builder()
                     .url(endpoint)
-                    .method(httpMethod.toString(), requestBody)
+                    .method(String.valueOf(httpMethod), requestBody)
                     .build();
-            return client.newCall(request).execute();
+            Response response = client.newCall(request).execute();
+            if (response.isSuccessful()) {
+                T t = readValue(clazz, response);
+                if (Objects.nonNull(t)) {
+                    return t;
+                }
+            }
+            throw new ApiCommunicationException("Api communicate exception" + response.message());
+
         } catch (Exception exception) {
-            throw new ApiCommunicationException(exception.getMessage());
+            throw new ApiCommunicationException("Api communicate exception" + exception.getMessage());
         }
     }
 

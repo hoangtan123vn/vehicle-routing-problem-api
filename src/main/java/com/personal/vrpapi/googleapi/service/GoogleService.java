@@ -1,6 +1,7 @@
 package com.personal.vrpapi.googleapi.service;
 
 import com.personal.vrpapi.googleapi.dto.model.DistanceMatrix;
+import com.personal.vrpapi.googleapi.dto.model.Geocoding;
 import com.personal.vrpapi.googleapi.dto.model.Places;
 
 public interface GoogleService {
@@ -19,4 +20,12 @@ public interface GoogleService {
      * @return
      */
     Places getPlaces(String input);
+
+    /**
+     * Geocoding address input
+     * @param address
+     * @param region
+     * @return
+     */
+    Geocoding geoCodingPlaces(String address, String region);
 }

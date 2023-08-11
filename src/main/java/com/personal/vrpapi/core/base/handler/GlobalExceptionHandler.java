@@ -13,7 +13,7 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(BaseException.class)
     @ResponseStatus(value = HttpStatus.BAD_REQUEST)
-    public ErrorMessage handlerException(RuntimeException e){
+    public ErrorMessage handlerException(BaseException e){
         return ErrorMessage.builder()
                 .error(e.getMessage())
                 .status(HttpStatus.BAD_REQUEST.toString())
@@ -22,7 +22,16 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(ApiCommunicationException.class)
     @ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR)
-    public ErrorMessage handlerApiCommunicationException(RuntimeException e){
+    public ErrorMessage handlerApiCommunicationException(ApiCommunicationException e){
+        return ErrorMessage.builder()
+                .error(e.getMessage())
+                .status(HttpStatus.INTERNAL_SERVER_ERROR.toString())
+                .build();
+    }
+
+    @ExceptionHandler(RuntimeException.class)
+    @ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR)
+    public ErrorMessage handlerRuntimeException(RuntimeException e){
         return ErrorMessage.builder()
                 .error(e.getMessage())
                 .status(HttpStatus.INTERNAL_SERVER_ERROR.toString())

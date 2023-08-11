@@ -1,6 +1,7 @@
 package com.personal.vrpapi.core.maps.route.entity;
 
 import com.personal.vrpapi.core.base.entity.AbstractEntity;
+import com.personal.vrpapi.core.maps.core.entity.Map;
 import com.personal.vrpapi.core.maps.route.enums.StatusRoute;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -25,13 +26,13 @@ public class Route extends AbstractEntity {
     private ZonedDateTime dateCompleted;
 
     @Column
-    private Long costRoute;
+    private Double costRoute;
 
     @Column
-    private Integer loadingRoute;
+    private Double loadingRoute;
 
     @Column
-    private Integer capacityRoute;
+    private Double capacityRoute;
 
     @Column
     @Enumerated(EnumType.STRING)
@@ -39,4 +40,8 @@ public class Route extends AbstractEntity {
 
     @OneToMany(mappedBy = RouteDetail.Fields.route, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<RouteDetail> routeDetails;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "map_id")
+    private Map map;
 }

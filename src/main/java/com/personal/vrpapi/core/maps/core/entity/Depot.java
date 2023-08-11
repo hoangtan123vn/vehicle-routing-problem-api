@@ -20,16 +20,28 @@ import java.util.List;
 public class Depot extends AbstractEntity {
 
     @Column
-    private String lat;
+    private Double lat;
 
     @Column
-    private String lng;
+    private Double lng;
 
     @Column
-    private String address;
+    private String line1;
 
     @Column
-    private String hotline;
+    private String line2;
+
+    @Column
+    private String hotLine;
+
+    @Column
+    private String district;
+
+    @Column
+    private String city;
+
+    @Column
+    private String country;
 
     @Column
     private String postalCode;

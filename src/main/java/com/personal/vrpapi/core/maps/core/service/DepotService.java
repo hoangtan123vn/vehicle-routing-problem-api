@@ -1,6 +1,14 @@
 package com.personal.vrpapi.core.maps.core.service;
 
+import com.personal.vrpapi.core.maps.core.dto.request.AddDepotRequest;
+import com.personal.vrpapi.core.maps.core.entity.Depot;
+
 public interface DepotService {
 
-//    Depot addDepot(Str)
+    /**
+     * add Depot base on request location in map
+     * @param request
+     * @return
+     */
+    Depot addDepot(AddDepotRequest request);
 }

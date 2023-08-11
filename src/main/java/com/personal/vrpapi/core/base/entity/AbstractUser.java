@@ -32,10 +32,10 @@ public abstract class AbstractUser extends AbstractEntity {
     private String address;
 
     @Column
-    private String lat;
+    private Double lat;
 
     @Column
-    private String lng;
+    private Double lng;
 
     @Column
     private String email;
