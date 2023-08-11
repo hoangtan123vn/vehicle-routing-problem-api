@@ -34,6 +34,9 @@ public class RouteDetail extends AbstractEntity {
     private Route route;
 
     @Column
+    private Long sequence;
+
+    @Column
     @Enumerated(EnumType.STRING)
     private StatusRoute statusRoute;
 
