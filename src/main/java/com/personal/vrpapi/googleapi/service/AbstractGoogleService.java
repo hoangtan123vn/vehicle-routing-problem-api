@@ -48,7 +48,6 @@ public abstract class AbstractGoogleService {
                 return objectMapper.readValue(responseBody, target);
             } catch (Exception e) {
                 LOGGER.error(e.getMessage());
-                e.printStackTrace();
             }
         }
         return null;

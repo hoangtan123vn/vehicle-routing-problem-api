@@ -1,8 +1,8 @@
 package com.personal.vrpapi.core.authorization.service.impl;
 
 import com.personal.vrpapi.core.authorization.converter.UserConverter;
-import com.personal.vrpapi.core.authorization.dto.request.CreateUserRequest;
 import com.personal.vrpapi.core.authorization.dto.request.LoginRequest;
+import com.personal.vrpapi.core.authorization.dto.request.UserRequest;
 import com.personal.vrpapi.core.authorization.dto.response.JwtResponse;
 import com.personal.vrpapi.core.authorization.dto.response.UserData;
 import com.personal.vrpapi.core.authorization.enums.RoleEnum;
@@ -23,6 +23,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.Date;
+import java.util.Objects;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -53,11 +54,11 @@ public class UserServiceImpl implements UserService {
         try {
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
         } catch (DisabledException e) {
-            throw new DisabledException("USER_DISABLED", e);
+            throw new DisabledException("User have not permission to login", e);
         } catch (BadCredentialsException e) {
             throw new BadCredentialsException("Wrong Username or Password", e);
         } catch (Exception e) {
-            throw new BaseException("Exception : " +  e.getMessage());
+            throw new BaseException(e.getMessage());
         }
         AbstractUser user = userRepository.findByUserName(loginRequest.getUsername());
 
@@ -75,15 +76,15 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserData createUser(CreateUserRequest userRequest, RoleEnum roleEnum) {
+    public UserData createUser(UserRequest userRequest, RoleEnum roleEnum) {
         AbstractUser user = userRepository.findByUserName(userRequest.getUsername());
-//        if (Objects.isNull(user)){
-//            user = userConverter.convertUserRequestToUser(userRequest, roleEnum);
-//            user.setPassword(passwordEncoder.encode(userRequest.getPassword()));
-//            userRepository.save(user);
+        if (Objects.isNull(user)){
+            user = userConverter.convertUserRequestToUser(userRequest);
+            user.setPassword(passwordEncoder.encode(userRequest.getPassword()));
+            userRepository.save(user);
             return userConverter.convertUserToUserData(user);
-//        } else {
-//            throw new BaseException("Username is existed");
-//        }
+        } else {
+            throw new BaseException("Username is existed");
+        }
     }
 }

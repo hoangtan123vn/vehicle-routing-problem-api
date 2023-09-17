@@ -1,7 +1,7 @@
 package com.personal.vrpapi.core.authorization.controller;
 
-import com.personal.vrpapi.core.authorization.dto.request.CreateUserRequest;
 import com.personal.vrpapi.core.authorization.dto.request.LoginRequest;
+import com.personal.vrpapi.core.authorization.dto.request.UserRequest;
 import com.personal.vrpapi.core.authorization.dto.response.JwtResponse;
 import com.personal.vrpapi.core.authorization.dto.response.UserData;
 import com.personal.vrpapi.core.authorization.enums.RoleEnum;
@@ -30,12 +30,12 @@ public class AuthorizationController {
     }
 
     @PostMapping("/driver/register")
-    public UserData createDriver(@RequestBody @Valid CreateUserRequest userRequest) {
+    public UserData createDriver(@RequestBody @Valid UserRequest userRequest) {
         return userService.createUser(userRequest, RoleEnum.DRIVER);
     }
 
     @PostMapping("/customer/register")
-    public UserData createCustomer(@RequestBody @Valid CreateUserRequest userRequest) {
+    public UserData createCustomer(@RequestBody @Valid UserRequest userRequest) {
         return userService.createUser(userRequest, RoleEnum.CUSTOMER);
     }
 }

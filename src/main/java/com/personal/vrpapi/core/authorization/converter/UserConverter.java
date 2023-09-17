@@ -1,26 +1,22 @@
 package com.personal.vrpapi.core.authorization.converter;
 
+import com.personal.vrpapi.core.authorization.dto.request.UserRequest;
 import com.personal.vrpapi.core.authorization.dto.response.UserData;
-import com.personal.vrpapi.core.authorization.repository.RoleRepository;
 import com.personal.vrpapi.core.base.entity.AbstractUser;
-import org.springframework.stereotype.Component;
 
-import javax.annotation.Resource;
+public interface UserConverter {
 
-@Component
-public class UserConverter {
+    /**
+     * convert User to UserData
+     * @param user
+     * @return UserData
+     */
+    UserData convertUserToUserData(AbstractUser user);
 
-    @Resource
-    private RoleRepository roleRepository;
-
-    public UserData convertUserToUserData(AbstractUser user){
-        UserData userData = new UserData();
-        userData.setUsername(user.getUserName());
-        userData.setAddress(user.getAddress());
-        userData.setFirstName(user.getFirstName());
-        userData.setEmail(user.getEmail());
-        userData.setLastName(user.getLastName());
-        userData.setPhone(user.getPhoneNumber());
-        return userData;
-    }
+    /**
+     * convert UserRequest to AbstractUser (DRIVER, CUSTOMER) base on RoleEnum on UserRequest
+     * @param request
+     * @return AbstractUser (dType : Driver, Customer)
+     */
+    AbstractUser convertUserRequestToUser(UserRequest request);
 }

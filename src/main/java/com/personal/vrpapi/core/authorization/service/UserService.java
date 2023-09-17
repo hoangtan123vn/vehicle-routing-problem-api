@@ -1,14 +1,26 @@
 package com.personal.vrpapi.core.authorization.service;
 
-import com.personal.vrpapi.core.authorization.dto.request.CreateUserRequest;
 import com.personal.vrpapi.core.authorization.dto.request.LoginRequest;
+import com.personal.vrpapi.core.authorization.dto.request.UserRequest;
 import com.personal.vrpapi.core.authorization.dto.response.JwtResponse;
 import com.personal.vrpapi.core.authorization.dto.response.UserData;
 import com.personal.vrpapi.core.authorization.enums.RoleEnum;
 
 public interface UserService {
 
+    /**
+     * handler Login base on Role
+     * @param loginRequest
+     * @param roleEnum
+     * @return Jwtoken
+     */
     JwtResponse authentication(LoginRequest loginRequest, RoleEnum roleEnum);
 
-    UserData createUser(CreateUserRequest userRequest, RoleEnum roleEnum);
+    /**
+     * create User (DRIVER, CUSTOMER) base on Role
+     * @param userRequest
+     * @param roleEnum
+     * @return User
+     */
+    UserData createUser(UserRequest userRequest, RoleEnum roleEnum);
 }

@@ -33,21 +33,15 @@ public class UserSampleData implements SampleData {
         if (Objects.isNull(existed)) {
             Role role = new Role();
             role.setRoleName(RoleEnum.ADMIN);
+            saveUser("", "admin", "admin", "Aa123456", new Admin(), role);
 
             Role role1 = new Role();
             role1.setRoleName(RoleEnum.CUSTOMER);
+            saveUser("", "customer", "customer", "Aa123456", new Customer(), role1);
 
             Role role2 = new Role();
             role2.setRoleName(RoleEnum.DRIVER);
-
-            Customer customer = new Customer();
-            saveUser("", "customer", "customer", "Aa123456", customer, role1);
-
-            Driver driver = new Driver();
-            saveUser("", "driver", "driver", "Aa123456", driver, role2);
-
-            Admin admin = new Admin();
-            saveUser("", "admin", "admin", "Aa123456", admin, role);
+            saveUser("", "driver", "driver", "Aa123456", new Driver(), role2);
         }
     }
 
