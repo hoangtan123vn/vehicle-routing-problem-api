@@ -1,9 +1,9 @@
 package com.personal.vrpapi.core.maps.core.repository;
 
 import com.personal.vrpapi.core.authorization.entity.Driver;
-import org.springframework.data.jpa.repository.JpaRepository;
+import com.personal.vrpapi.core.base.repository.CommonRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface DriverRepository extends JpaRepository<Driver, Long> {
+public interface DriverRepository extends CommonRepository<Driver> {
 }
