@@ -1,12 +1,14 @@
 package com.personal.vrpapi.core.base.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.personal.vrpapi.core.base.handler.Pageable;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.io.Serializable;
+import java.time.ZonedDateTime;
 
 @Getter
 @Setter
@@ -18,4 +20,10 @@ public class Response implements Serializable {
 
     @JsonProperty("data")
     private Object data;
+
+    @JsonProperty("timestamp")
+    private ZonedDateTime timestamp;
+
+    @JsonProperty("page")
+    private Pageable pageable;
 }

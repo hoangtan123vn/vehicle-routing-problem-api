@@ -6,6 +6,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.FieldNameConstants;
+import org.hibernate.annotations.LazyGroup;
+import org.hibernate.annotations.LazyToOne;
+import org.hibernate.annotations.LazyToOneOption;
 
 import javax.persistence.*;
 
@@ -63,6 +66,9 @@ public abstract class AbstractUser extends AbstractEntity {
     private Double demand;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @LazyToOne(value = LazyToOneOption.NO_PROXY)
+    @LazyGroup(Fields.role)
     @JoinColumn(name = "role_id")
+//    @JsonIgnore
     private Role role;
 }

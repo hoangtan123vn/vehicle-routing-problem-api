@@ -26,9 +26,6 @@ public class MapController {
     Geocoding geoCoding(@RequestParam String address, @RequestParam(required = false) String region) {
         return googleService.geoCodingPlaces(address, region);
     }
-
-
-
 //    @PostMapping
 
 }

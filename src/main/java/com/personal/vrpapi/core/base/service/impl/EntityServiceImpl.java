@@ -6,6 +6,8 @@ import com.personal.vrpapi.core.base.repository.CommonRepository;
 import com.personal.vrpapi.core.base.service.EntityService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.repository.support.Repositories;
 import org.springframework.util.Assert;
@@ -52,6 +54,21 @@ public class EntityServiceImpl implements EntityService {
         Assert.notNull(entity, "entity must not be null");
         Assert.notNull(specification, "specification must not be null");
         return getRepository(entity).findAll(specification);
+    }
+
+    @Override
+    public <T extends AbstractEntity> Page<T> searchPaging(Class<T> entity, Specification<T> specification, Pageable pageable) {
+        Assert.notNull(entity, "entity must not be null");
+        Assert.notNull(specification, "specification must not be null");
+        Assert.notNull(pageable, "pageable must not be null");
+        return getRepository(entity).findAll(specification, pageable);
+    }
+
+    @Override
+    public <T extends AbstractEntity> T findById(Long id, Class<T> entity) {
+        Assert.notNull(id, "id must not be null");
+        Assert.notNull(entity, "entity must not be null");
+        return entityManager.find(entity, id);
     }
 
     @SuppressWarnings("unchecked")
