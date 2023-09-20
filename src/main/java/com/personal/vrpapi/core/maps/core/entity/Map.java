@@ -3,11 +3,9 @@ package com.personal.vrpapi.core.maps.core.entity;
 import com.personal.vrpapi.core.authorization.entity.Customer;
 import com.personal.vrpapi.core.base.entity.AbstractEntity;
 import com.personal.vrpapi.core.maps.core.enums.MapType;
+import com.personal.vrpapi.core.maps.core.listener.MapListener;
 import com.personal.vrpapi.core.maps.route.entity.Route;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import lombok.experimental.FieldNameConstants;
 
 import javax.persistence.*;
@@ -18,8 +16,14 @@ import java.util.List;
 @Entity
 @Setter
 @Getter
-@Table(name = "maps")
+@Table(name = "maps", uniqueConstraints = {
+        @UniqueConstraint(columnNames = {
+                Map.Fields.mapId
+        }, name = "mapId")
+})
 @FieldNameConstants
+@EntityListeners({MapListener.class})
+@Builder
 public class Map extends AbstractEntity {
 
     @Column
@@ -43,4 +47,14 @@ public class Map extends AbstractEntity {
 
     @OneToMany(mappedBy = Vehicle.Fields.map, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Vehicle> vehicles;
+
+    @Override
+    public boolean equals(final Object obj) {
+        return super.equals(obj);
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
 }

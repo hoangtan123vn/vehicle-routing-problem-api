@@ -6,7 +6,17 @@ import com.personal.vrpapi.core.maps.core.entity.Depot;
 
 public interface DepotConverter {
 
+    /**
+     * Convert Depot to DepotData
+     * @param depot
+     * @return DepotData
+     */
     DepotData convertDepot2Data(Depot depot);
 
+    /**
+     * Convert AddDepotRequest to Depot
+     * @param request
+     * @return Depot
+     */
     Depot convertAddDepotRequest2Depot(AddDepotRequest request);
 }

@@ -35,4 +35,7 @@ public class AddDepotRequest {
 
     @JsonProperty(value ="country")
     private String country;
+
+    @JsonProperty(value = "map_id")
+    private Long mapId;
 }

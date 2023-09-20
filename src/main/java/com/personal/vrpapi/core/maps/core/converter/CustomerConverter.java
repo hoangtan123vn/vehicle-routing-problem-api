@@ -8,9 +8,24 @@ import java.util.List;
 
 public interface CustomerConverter {
 
-    CustomerData convert(Customer customer);
+    /**
+     * convert Customer to CustomerData
+     * @param customer
+     * @return
+     */
+    CustomerData convert(final Customer customer);
 
-    List<CustomerData> convertAll(List<Customer> customers);
+    /**
+     * convert List<Customer> to List<CustomerData>
+     * @param customers
+     * @return
+     */
+    List<CustomerData> convertAll(final List<Customer> customers);
 
-    Page<CustomerData> convertAllPaging(Page<Customer> customers);
+    /**
+     * @param customers
+     * convert Page<Customer> to Page<CustomerData>
+     * @return
+     */
+    Page<CustomerData> convertAllPaging(final Page<Customer> customers);
 }

@@ -26,4 +26,14 @@ public class Role extends AbstractEntity {
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = AbstractUser.Fields.role)
     private List<AbstractUser> users = new ArrayList<>();
+
+    @Override
+    public boolean equals(final Object obj) {
+        return super.equals(obj);
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
 }

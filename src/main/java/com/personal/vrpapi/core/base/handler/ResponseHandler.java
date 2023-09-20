@@ -14,7 +14,7 @@ import java.time.ZonedDateTime;
 import java.util.ArrayList;
 
 @ControllerAdvice
-public class ResponseHandler implements ResponseBodyAdvice {
+public class ResponseHandler implements ResponseBodyAdvice<Object> {
     @Override
     public boolean supports(MethodParameter returnType, Class converterType) {
         return true;
@@ -31,18 +31,20 @@ public class ResponseHandler implements ResponseBodyAdvice {
             return Response.builder()
                     .data(paging.hasContent() ? paging.getContent() : new ArrayList<>())
                     .timestamp(ZonedDateTime.now())
-                    .pageable(buildPageable(paging.getPageable()))
+                    .pageable(buildPageable(paging))
                     .build();
         }
 
         return Response.builder().data(body).build();
     }
 
-    private Pageable buildPageable(org.springframework.data.domain.Pageable pageable) {
-        Pageable page = new Pageable();
-        page.setPageSize(pageable.getPageSize());
-        page.setCurrentPage(pageable.getPageNumber());
-        page.setTotalElements(pageable.getOffset());
-        return page;
+    private Pageable buildPageable(Page<?> page) {
+        org.springframework.data.domain.Pageable pageable = page.getPageable();
+        Pageable pageableDTO = new Pageable();
+        pageableDTO.setPageSize(pageable.getPageSize());
+        pageableDTO.setCurrentPage(pageable.getPageNumber());
+        pageableDTO.setTotalPages(page.getTotalPages());
+        pageableDTO.setTotalElements(page.getTotalElements());
+        return pageableDTO;
     }
 }

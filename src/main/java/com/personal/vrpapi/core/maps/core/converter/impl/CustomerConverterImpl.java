@@ -11,19 +11,19 @@ import java.util.List;
 @Component
 public class CustomerConverterImpl implements CustomerConverter {
     @Override
-    public CustomerData convert(Customer customer) {
+    public CustomerData convert(final Customer customer) {
         CustomerData customerData = new CustomerData();
         customerData.setFirstName(customer.getFirstName());
         return customerData;
     }
 
     @Override
-    public List<CustomerData> convertAll(List<Customer> customers) {
+    public List<CustomerData> convertAll(final List<Customer> customers) {
         return null;
     }
 
     @Override
-    public Page<CustomerData> convertAllPaging(Page<Customer> customers) {
+    public Page<CustomerData> convertAllPaging(final Page<Customer> customers) {
         Page<CustomerData> customerDatas = null;
         if (customers.hasContent()) {
             customerDatas = customers.map(this::convert);

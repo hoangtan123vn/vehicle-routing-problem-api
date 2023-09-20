@@ -51,4 +51,14 @@ public class Depot extends AbstractEntity {
 
     @OneToMany(mappedBy = Vehicle.Fields.depot, fetch = FetchType.LAZY)
     private List<Vehicle> vehicles;
+
+    @Override
+    public boolean equals(final Object obj) {
+        return super.equals(obj);
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
 }

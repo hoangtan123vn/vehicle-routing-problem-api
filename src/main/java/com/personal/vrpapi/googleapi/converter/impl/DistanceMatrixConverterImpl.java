@@ -1,5 +1,6 @@
 package com.personal.vrpapi.googleapi.converter.impl;
 
+import com.personal.vrpapi.core.maps.core.dto.model.SingleDistance;
 import com.personal.vrpapi.googleapi.converter.DistanceMatrixConverter;
 import com.personal.vrpapi.googleapi.dto.model.Distance;
 import com.personal.vrpapi.googleapi.dto.model.DistanceMatrix;
@@ -19,6 +20,15 @@ public class DistanceMatrixConverterImpl implements DistanceMatrixConverter {
                 .destination(distanceMatrix.getDestinationAddress().get(0))
                 .distance(buildDistanceData(distanceMatrix.getRows().get(0).getElements().get(0).getDistance()))
                 .duration(buildDurationData(distanceMatrix.getRows().get(0).getElements().get(0).getDuration()))
+                .build();
+    }
+
+    @Override
+    public SingleDistance convertSingleDistance(DistanceMatrix distanceMatrix) {
+        return SingleDistance.builder()
+                .origin(distanceMatrix.getOriginAddresses().get(0))
+                .destination(distanceMatrix.getDestinationAddress().get(0))
+                .value(distanceMatrix.getRows().get(0).getElements().get(0).getDistance().getValue())
                 .build();
     }
 

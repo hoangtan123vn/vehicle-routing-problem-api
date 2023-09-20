@@ -71,4 +71,14 @@ public abstract class AbstractUser extends AbstractEntity {
     @JoinColumn(name = "role_id")
 //    @JsonIgnore
     private Role role;
+
+    @Override
+    public boolean equals(final Object obj) {
+        return super.equals(obj);
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
 }

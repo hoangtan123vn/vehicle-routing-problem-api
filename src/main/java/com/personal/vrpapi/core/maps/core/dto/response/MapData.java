@@ -1,6 +1,5 @@
 package com.personal.vrpapi.core.maps.core.dto.response;
 
-import com.personal.vrpapi.core.maps.route.entity.Route;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -14,7 +13,7 @@ import java.util.List;
 @Builder
 public class MapData {
     private Long id;
-    private Long mapId;
+    private String mapId;
     private DepotData depot;
-    private List<Route> routes;
+    private List<RouteData> routes;
 }

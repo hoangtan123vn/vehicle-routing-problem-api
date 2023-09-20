@@ -31,4 +31,13 @@ public class Driver extends AbstractUser {
     @OneToMany(mappedBy = RouteDetail.Fields.driver, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<RouteDetail> routeDetails;
 
+    @Override
+    public boolean equals(final Object obj) {
+        return super.equals(obj);
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
 }
