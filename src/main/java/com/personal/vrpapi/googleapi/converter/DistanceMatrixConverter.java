@@ -9,7 +9,7 @@ public interface DistanceMatrixConverter {
     /**
      * convert DistanceMatrix to DistanceMatrixData
      * @param distanceMatrix
-     * @return
+     * @return DistanceMatrixData
      */
     DistanceMatrixData convertDistanceMatrix2Data(final DistanceMatrix distanceMatrix);
 
