@@ -1,4 +1,4 @@
-package com.personal.vrpapi.core.maps.core.exception;
+package com.personal.vrpapi.core.base.exception;
 
 public class NotFoundException extends RuntimeException {
 

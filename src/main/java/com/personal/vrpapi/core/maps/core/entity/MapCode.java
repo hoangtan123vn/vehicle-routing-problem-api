@@ -17,6 +17,6 @@ public class MapCode {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "map_code_sequence")
     @GenericGenerator(
             name = "map_code_sequence",
-            strategy = "com.personal.vrpapi.strategy.CustomMapIdentifierGenerator")
+            strategy = "com.personal.vrpapi.core.base.strategy.CustomMapIdentifierGenerator")
     private String id;
 }

@@ -1,6 +1,7 @@
 package com.personal.vrpapi.core.maps.core.controller;
 
 import com.personal.vrpapi.core.maps.core.converter.MapConverter;
+import com.personal.vrpapi.core.maps.core.dto.request.AddMapRequest;
 import com.personal.vrpapi.core.maps.core.dto.response.MapData;
 import com.personal.vrpapi.core.maps.core.service.MapService;
 import com.personal.vrpapi.googleapi.dto.model.Geocoding;
@@ -9,9 +10,10 @@ import com.personal.vrpapi.googleapi.service.GoogleService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @RestController
-@RequestMapping("/api/map")
+@RequestMapping("/api/maps")
 public class MapController {
 
     @Resource
@@ -38,4 +40,13 @@ public class MapController {
         return mapConverter.convert(mapService.getMap(id));
     }
 
+    @GetMapping
+    List<MapData> getMaps() {
+        return mapConverter.convertAll(mapService.getMaps());
+    }
+
+    @PostMapping
+    MapData createMap(@RequestBody AddMapRequest request) {
+        return mapConverter.convert(mapService.createMap(request));
+    }
 }

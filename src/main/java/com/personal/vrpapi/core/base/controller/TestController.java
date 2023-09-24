@@ -28,7 +28,7 @@ public class TestController {
 
     @GetMapping("/vehicles")
     public Page<Vehicle> getVehicles() {
-        return entityService.searchPaging(Vehicle.class, (root, query, criteriaBuilder)  -> {
+        return entityService.search(Vehicle.class, (root, query, criteriaBuilder)  -> {
             return null;
         }, PageRequest.of(0, 5));
     }

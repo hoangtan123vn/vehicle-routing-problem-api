@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
 import java.util.Collections;
+import java.util.List;
 import java.util.Objects;
 
 @Component
@@ -31,5 +32,11 @@ public class MapConverterImpl implements MapConverter {
                 .build();
     }
 
-
+    @Override
+    public List<MapData> convertAll(List<Map> maps) {
+        if (CollectionUtils.isNotEmpty(maps)) {
+            return maps.stream().map(this::convert).toList();
+        }
+        return Collections.emptyList();
+    }
 }

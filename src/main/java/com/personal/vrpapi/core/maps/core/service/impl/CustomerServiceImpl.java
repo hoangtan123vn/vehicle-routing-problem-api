@@ -28,7 +28,7 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public Page<Customer> getAllCustomersWithPaging() {
-        return entityService.searchPaging(Customer.class, (root, query, criteriaBuilder)  -> {
+        return entityService.search(Customer.class, (root, query, criteriaBuilder) -> {
             return null;
         }, PageRequest.of(0, 5));
     }

@@ -16,11 +16,7 @@ import java.util.List;
 @Entity
 @Setter
 @Getter
-@Table(name = "maps", uniqueConstraints = {
-        @UniqueConstraint(columnNames = {
-                Map.Fields.mapId
-        }, name = "mapId")
-})
+@Table(name = "maps", uniqueConstraints = {@UniqueConstraint(columnNames = {Map.Fields.mapId}, name = "mapId")})
 @FieldNameConstants
 @EntityListeners({MapListener.class})
 @Builder
@@ -30,13 +26,14 @@ public class Map extends AbstractEntity {
     private String mapId;
 
     @Column
+    private Boolean isActive;
+
+    @Column
     @Enumerated(EnumType.STRING)
     private MapType mapType;
 
     @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "map_2_customer",
-            joinColumns = @JoinColumn(name = "map_id"),
-            inverseJoinColumns = @JoinColumn(name = "customer_id"))
+    @JoinTable(name = "map_2_customer", joinColumns = @JoinColumn(name = "map_id"), inverseJoinColumns = @JoinColumn(name = "customer_id"))
     private List<Customer> customers;
 
     @OneToMany(mappedBy = Route.Fields.map, fetch = FetchType.LAZY, cascade = CascadeType.ALL)

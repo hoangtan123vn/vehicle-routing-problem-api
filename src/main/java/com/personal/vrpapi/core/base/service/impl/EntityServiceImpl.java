@@ -57,7 +57,7 @@ public class EntityServiceImpl implements EntityService {
     }
 
     @Override
-    public <T extends AbstractEntity> Page<T> searchPaging(Class<T> entity, Specification<T> specification, Pageable pageable) {
+    public <T extends AbstractEntity> Page<T> search(Class<T> entity, Specification<T> specification, Pageable pageable) {
         Assert.notNull(entity, "entity must not be null");
         Assert.notNull(specification, "specification must not be null");
         Assert.notNull(pageable, "pageable must not be null");

@@ -4,6 +4,7 @@ import com.personal.vrpapi.core.authorization.enums.RoleEnum;
 import com.personal.vrpapi.core.base.InitialSampleDataSetup;
 import com.personal.vrpapi.core.base.initialdata.SampleData;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.auditing.DateTimeProvider;
@@ -16,6 +17,7 @@ import java.util.*;
 
 @Configuration
 @EnableJpaAuditing(dateTimeProviderRef = "auditingDateTimeProvider")
+@EnableAutoConfiguration
 public class VrpApiConfiguration {
 
     @Bean

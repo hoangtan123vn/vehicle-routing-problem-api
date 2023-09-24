@@ -3,9 +3,11 @@ package com.personal.vrpapi.core.base.strategy;
 import org.hibernate.HibernateException;
 import org.hibernate.engine.spi.SharedSessionContractImplementor;
 import org.hibernate.id.IdentifierGenerator;
+import org.springframework.stereotype.Component;
 
 import java.io.Serializable;
 
+@Component
 public class CustomMapIdentifierGenerator implements IdentifierGenerator {
     private static final String mapPrefix = "MAP-";
     private static final String length = "%09d";

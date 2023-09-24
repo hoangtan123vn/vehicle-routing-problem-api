@@ -35,7 +35,10 @@ public class ResponseHandler implements ResponseBodyAdvice<Object> {
                     .build();
         }
 
-        return Response.builder().data(body).build();
+        return Response.builder()
+                .data(body)
+                .timestamp(ZonedDateTime.now())
+                .build();
     }
 
     private Pageable buildPageable(Page<?> page) {

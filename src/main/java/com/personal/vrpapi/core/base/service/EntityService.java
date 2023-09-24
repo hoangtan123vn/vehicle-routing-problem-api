@@ -34,7 +34,7 @@ public interface EntityService {
      * @return
      * @param <T>
      */
-    <T extends AbstractEntity> Page<T> searchPaging(Class<T> entity, Specification<T> specification, Pageable pageable);
+    <T extends AbstractEntity> Page<T> search(Class<T> entity, Specification<T> specification, Pageable pageable);
 
     /**
      * find entity by ID
