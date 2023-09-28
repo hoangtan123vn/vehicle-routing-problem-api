@@ -5,10 +5,13 @@ import com.personal.vrpapi.core.base.InitialSampleDataSetup;
 import com.personal.vrpapi.core.base.initialdata.SampleData;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.auditing.DateTimeProvider;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import java.time.ZoneId;
 import java.time.ZoneOffset;
@@ -18,6 +21,9 @@ import java.util.*;
 @Configuration
 @EnableJpaAuditing(dateTimeProviderRef = "auditingDateTimeProvider")
 @EnableAutoConfiguration
+@EntityScan(basePackages = {"com.personal.vrpapi.*"})
+@EnableJpaRepositories(basePackages = {"com.personal.vrpapi.*"})
+@EnableTransactionManagement
 public class VrpApiConfiguration {
 
     @Bean

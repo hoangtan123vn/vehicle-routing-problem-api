@@ -3,8 +3,8 @@ package com.personal.vrpapi.core.maps.core.entity;
 import com.personal.vrpapi.core.authorization.entity.Customer;
 import com.personal.vrpapi.core.base.entity.AbstractEntity;
 import com.personal.vrpapi.core.maps.core.enums.MapType;
-import com.personal.vrpapi.core.maps.core.listener.MapListener;
 import com.personal.vrpapi.core.maps.route.entity.Route;
+import com.personal.vrpapi.core.maps.core.listener.MapListener;
 import lombok.*;
 import lombok.experimental.FieldNameConstants;
 

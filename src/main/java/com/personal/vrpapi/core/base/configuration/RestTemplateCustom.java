@@ -1,4 +1,4 @@
-package com.personal.vrpapi.core.configuration;
+package com.personal.vrpapi.core.base.configuration;
 
 
 import org.springframework.beans.factory.annotation.Value;

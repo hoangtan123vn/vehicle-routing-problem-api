@@ -14,15 +14,15 @@ import javax.persistence.Id;
 @Entity
 @Getter
 @Setter
-public class MapCode {
+public class VehicleCode {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "map_code_sequence")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "vehicle_code_sequence")
     @GenericGenerator(
-            name = "map_code_sequence",
+            name = "vehicle_code_sequence",
             strategy = "com.personal.vrpapi.core.base.identifier.StringPrefixedSequenceIdGenerator",
             parameters = {
                     @Parameter(name = StringPrefixedSequenceIdGenerator.INCREMENT_PARAM, value = "50"),
-                    @Parameter(name = StringPrefixedSequenceIdGenerator.VALUE_PREFIX_PARAMETER, value = "MAP-"),
+                    @Parameter(name = StringPrefixedSequenceIdGenerator.VALUE_PREFIX_PARAMETER, value = "VEH-"),
                     @Parameter(name = StringPrefixedSequenceIdGenerator.NUMBER_FORMAT_PARAMETER, value = "%09d") })
     private String id;
 }

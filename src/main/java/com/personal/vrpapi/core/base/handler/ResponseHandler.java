@@ -38,6 +38,7 @@ public class ResponseHandler implements ResponseBodyAdvice<Object> {
         return Response.builder()
                 .data(body)
                 .timestamp(ZonedDateTime.now())
+                .pageable(buildDefaultPageable())
                 .build();
     }
 
@@ -48,6 +49,15 @@ public class ResponseHandler implements ResponseBodyAdvice<Object> {
         pageableDTO.setCurrentPage(pageable.getPageNumber());
         pageableDTO.setTotalPages(page.getTotalPages());
         pageableDTO.setTotalElements(page.getTotalElements());
+        return pageableDTO;
+    }
+
+    private Pageable buildDefaultPageable() {
+        Pageable pageableDTO = new Pageable();
+        pageableDTO.setPageSize(0);
+        pageableDTO.setCurrentPage(0);
+        pageableDTO.setTotalPages(1);
+        pageableDTO.setTotalElements(1);
         return pageableDTO;
     }
 }

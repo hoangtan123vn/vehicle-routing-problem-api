@@ -84,6 +84,7 @@ public class MapServiceImpl implements MapService {
             map.setVehicles(vehicles);
         }
 
+        map.setIsActive(true);
         map.setMapType(MapType.PROCESSING);
         return mapRepository.save(map);
     }
