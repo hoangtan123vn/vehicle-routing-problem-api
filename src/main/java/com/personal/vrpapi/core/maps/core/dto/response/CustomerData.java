@@ -5,10 +5,14 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 @Data
 public class CustomerData {
-    String firstName;
+    private Long id;
+    private String firstName;
+    private BigDecimal demand;
 }

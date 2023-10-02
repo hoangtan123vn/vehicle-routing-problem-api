@@ -4,17 +4,13 @@ import com.personal.vrpapi.core.authorization.entity.Customer;
 import com.personal.vrpapi.core.base.exception.NotFoundException;
 import com.personal.vrpapi.core.base.service.EntityService;
 import com.personal.vrpapi.core.maps.core.converter.MapConverter;
-import com.personal.vrpapi.core.maps.core.dto.request.AddMapRequest;
+import com.personal.vrpapi.core.maps.core.dto.request.MapRequest;
 import com.personal.vrpapi.core.maps.core.entity.Depot;
 import com.personal.vrpapi.core.maps.core.entity.Map;
 import com.personal.vrpapi.core.maps.core.entity.Vehicle;
 import com.personal.vrpapi.core.maps.core.enums.MapType;
-import com.personal.vrpapi.core.maps.core.repository.CustomerRepository;
-import com.personal.vrpapi.core.maps.core.repository.DepotRepository;
 import com.personal.vrpapi.core.maps.core.repository.MapRepository;
-import com.personal.vrpapi.core.maps.core.repository.VehicleRepository;
-import com.personal.vrpapi.core.maps.route.entity.Route;
-import com.personal.vrpapi.core.maps.route.repository.RouteRepository;
+import com.personal.vrpapi.core.maps.route.service.RouteService;
 import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.stereotype.Component;
 
@@ -35,16 +31,16 @@ public class MapServiceImpl implements MapService {
     private MapConverter mapConverter;
 
     @Resource
-    private CustomerRepository customerRepository;
+    private CustomerService customerService;
 
     @Resource
-    private RouteRepository routeRepository;
+    private RouteService routeService;
 
     @Resource
-    private VehicleRepository vehicleRepository;
+    private VehicleService vehicleService;
 
     @Resource
-    private DepotRepository depotRepository;
+    private DepotService depotService;
 
     @Override
     public Map getMap(Long id) {
@@ -61,26 +57,20 @@ public class MapServiceImpl implements MapService {
     }
 
     @Override
-    public Map createMap(AddMapRequest request) {
+    public Map createMap(MapRequest request) {
         Map map = new Map();
         if (CollectionUtils.isNotEmpty(request.getCustomerIds())) {
-            List<Customer> customers = customerRepository.findAllByIdIn(request.getCustomerIds());
+            List<Customer> customers = customerService.findAllByIdIn(request.getCustomerIds());
             map.setCustomers(customers);
         }
 
-        if (CollectionUtils.isNotEmpty(request.getRouteIds())) {
-            List<Route> routes = routeRepository.findAllByIdIn(request.getRouteIds());
-            map.setRoutes(routes);
-        }
-
         if (Objects.nonNull(request.getDepotID())) {
-            Depot depot = depotRepository.findById(request.getDepotID()).
-                    orElseThrow(() -> new NotFoundException(String.format("Depot with %s not found", request.getDepotID())));
+            Depot depot = depotService.findById(request.getDepotID());
             map.setDepot(depot);
         }
 
         if (CollectionUtils.isNotEmpty(request.getVehicleIds())) {
-            List<Vehicle> vehicles = vehicleRepository.findAllByIdIn(request.getVehicleIds());
+            List<Vehicle> vehicles = vehicleService.findAllByIdIn(request.getVehicleIds());
             map.setVehicles(vehicles);
         }
 

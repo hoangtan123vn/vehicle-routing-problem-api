@@ -1,7 +1,7 @@
 package com.personal.vrpapi.core.maps.core.controller;
 
 import com.personal.vrpapi.core.maps.core.converter.MapConverter;
-import com.personal.vrpapi.core.maps.core.dto.request.AddMapRequest;
+import com.personal.vrpapi.core.maps.core.dto.request.MapRequest;
 import com.personal.vrpapi.core.maps.core.dto.response.MapData;
 import com.personal.vrpapi.core.maps.core.service.MapService;
 import com.personal.vrpapi.googleapi.dto.model.Geocoding;
@@ -46,7 +46,12 @@ public class MapController {
     }
 
     @PostMapping
-    MapData createMap(@RequestBody AddMapRequest request) {
+    MapData createMap(@RequestBody MapRequest request) {
         return mapConverter.convert(mapService.createMap(request));
     }
+
+//    @PatchMapping
+//    MapData updateMap(@RequestBody MapRequest request) {
+//        return mapConverter.convert()
+//    }
 }

@@ -12,16 +12,13 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class AddMapRequest {
+public class MapRequest {
 
     @JsonProperty("customers")
     private List<Long> customerIds;
 
     @JsonProperty("depot")
     private Long depotID;
-
-    @JsonProperty("routes")
-    private List<Long> routeIds;
 
     @JsonProperty("vehicles")
     private List<Long> vehicleIds;

@@ -1,6 +1,6 @@
 package com.personal.vrpapi.core.maps.core.service;
 
-import com.personal.vrpapi.core.maps.core.dto.request.AddMapRequest;
+import com.personal.vrpapi.core.maps.core.dto.request.MapRequest;
 import com.personal.vrpapi.core.maps.core.entity.Map;
 
 import java.util.List;
@@ -25,5 +25,5 @@ public interface MapService {
      * @param request
      * @return
      */
-    Map createMap(AddMapRequest request);
+    Map createMap(MapRequest request);
 }

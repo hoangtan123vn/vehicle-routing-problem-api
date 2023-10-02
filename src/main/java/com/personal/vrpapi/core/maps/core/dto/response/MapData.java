@@ -15,5 +15,6 @@ public class MapData {
     private Long id;
     private String mapId;
     private DepotData depot;
+    private List<CustomerData> customers;
     private List<RouteData> routes;
 }

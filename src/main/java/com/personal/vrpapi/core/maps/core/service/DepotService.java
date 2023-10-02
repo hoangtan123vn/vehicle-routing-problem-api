@@ -11,4 +11,11 @@ public interface DepotService {
      * @return
      */
     Depot addDepot(AddDepotRequest request);
+
+    /**
+     * find Depot by id Depot
+     * @param id
+     * @return
+     */
+    Depot findById(Long id);
 }
