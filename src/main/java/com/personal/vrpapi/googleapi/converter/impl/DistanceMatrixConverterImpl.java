@@ -32,6 +32,11 @@ public class DistanceMatrixConverterImpl implements DistanceMatrixConverter {
                 .build();
     }
 
+    @Override
+    public Double convertValueSingleDistance(SingleDistance singleDistance) {
+        return singleDistance.getValue();
+    }
+
     private DurationData buildDurationData(final Duration duration) {
         return DurationData.builder()
                 .value(duration.getValue())

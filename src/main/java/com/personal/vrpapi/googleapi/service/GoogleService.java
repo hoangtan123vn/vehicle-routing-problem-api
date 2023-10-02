@@ -28,4 +28,12 @@ public interface GoogleService {
      * @return
      */
     Geocoding geoCodingPlaces(String address, String region);
+
+    /**
+     * get value single Distance
+     * @param origin
+     * @param destination
+     * @return
+     */
+    Double getValueSingleDistance(String origin, String destination);
 }

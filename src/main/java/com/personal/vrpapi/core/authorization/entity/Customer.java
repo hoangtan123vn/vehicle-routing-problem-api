@@ -8,7 +8,10 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.FieldNameConstants;
 
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
 import java.util.List;
 
 @Entity
@@ -18,9 +21,6 @@ import java.util.List;
 @AllArgsConstructor
 @FieldNameConstants
 public class Customer extends AbstractUser {
-
-    @Column
-    private String shippingAddress;
 
     @OneToMany(mappedBy = RouteDetail.Fields.customer, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<RouteDetail> routeDetails;

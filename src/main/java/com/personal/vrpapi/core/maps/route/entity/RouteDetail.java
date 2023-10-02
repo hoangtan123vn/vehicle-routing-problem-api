@@ -29,12 +29,18 @@ public class RouteDetail extends AbstractEntity {
     @JoinColumn(name = "customer")
     private Customer customer;
 
+    @Column
+    private String shippingAddress;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "route")
     private Route route;
 
     @Column
     private Long sequence;
+
+    @Column
+    private Double demand;
 
     @Column
     @Enumerated(EnumType.STRING)

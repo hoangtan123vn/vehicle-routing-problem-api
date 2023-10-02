@@ -47,6 +47,9 @@ public class Depot extends AbstractEntity {
     private String postalCode;
 
     @Column
+    private String address;
+
+    @Column
     private String email;
 
     @OneToMany(mappedBy = Vehicle.Fields.depot, fetch = FetchType.LAZY)

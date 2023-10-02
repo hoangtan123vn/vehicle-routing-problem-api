@@ -4,7 +4,12 @@ import com.personal.vrpapi.core.maps.core.service.SearchService;
 import org.springframework.stereotype.Component;
 
 @Component
-public class InterSearchServiceImpl implements SearchService {
+public class InterSearchServiceImpl extends InstraSearchServiceImpl implements SearchService {
+
+//    @Override
+//    public List<Route> search(List<Vehicle> vehicles, List<Customer> customers, Depot depot) {
+//
+//    }
 
 
 }

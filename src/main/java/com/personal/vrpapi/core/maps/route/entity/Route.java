@@ -2,6 +2,7 @@ package com.personal.vrpapi.core.maps.route.entity;
 
 import com.personal.vrpapi.core.base.entity.AbstractEntity;
 import com.personal.vrpapi.core.maps.core.entity.Map;
+import com.personal.vrpapi.core.maps.core.entity.Vehicle;
 import com.personal.vrpapi.core.maps.route.enums.StatusRoute;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -14,7 +15,12 @@ import java.time.ZonedDateTime;
 import java.util.List;
 
 @Entity
-@Table(name = "routes")
+@Table(name = "routes", uniqueConstraints = {
+        @UniqueConstraint(
+                columnNames = {
+                        Route.Fields.map,
+                        Route.Fields.vehicle})
+})
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -44,6 +50,10 @@ public class Route extends AbstractEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "map_id")
     private Map map;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "vehicle_id")
+    private Vehicle vehicle;
 
     @Override
     public boolean equals(final Object obj) {

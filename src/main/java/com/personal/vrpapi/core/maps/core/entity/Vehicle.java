@@ -4,6 +4,7 @@ import com.personal.vrpapi.core.authorization.entity.Driver;
 import com.personal.vrpapi.core.base.entity.AbstractEntity;
 import com.personal.vrpapi.core.maps.core.enums.VehicleType;
 import com.personal.vrpapi.core.maps.core.listener.VehicleListener;
+import com.personal.vrpapi.core.maps.route.entity.Route;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,6 +12,7 @@ import lombok.Setter;
 import lombok.experimental.FieldNameConstants;
 
 import javax.persistence.*;
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -43,6 +45,12 @@ public class Vehicle extends AbstractEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn
     private Map map;
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Route> routes;
+
+    @Transient
+    private Double loading;
 
     @Override
     public boolean equals(final Object obj) {

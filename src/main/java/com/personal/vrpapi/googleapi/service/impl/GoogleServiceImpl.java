@@ -1,6 +1,8 @@
 package com.personal.vrpapi.googleapi.service.impl;
 
+import com.personal.vrpapi.core.maps.core.dto.model.SingleDistance;
 import com.personal.vrpapi.googleapi.GoogleProperties;
+import com.personal.vrpapi.googleapi.converter.DistanceMatrixConverter;
 import com.personal.vrpapi.googleapi.dto.model.DistanceMatrix;
 import com.personal.vrpapi.googleapi.dto.model.Geocoding;
 import com.personal.vrpapi.googleapi.dto.model.Places;
@@ -17,6 +19,9 @@ public class GoogleServiceImpl extends AbstractGoogleService implements GoogleSe
 
     @Resource
     private GoogleProperties properties;
+
+    @Resource
+    private DistanceMatrixConverter distanceMatrixConverter;
 
     private static final String API_DISTANCEMATRIX  = "/distancematrix/json?";
 
@@ -53,5 +58,12 @@ public class GoogleServiceImpl extends AbstractGoogleService implements GoogleSe
             endpoint = properties.getUrl().concat(API_GEOCODING).concat(input).concat(AMPERSAND + region).concat(AMPERSAND + key);
         }
         return executeRequest(endpoint, null, HttpMethod.GET, Geocoding.class);
+    }
+
+    @Override
+    public Double getValueSingleDistance(String origin, String destination) {
+        DistanceMatrix distanceMatrix = getSingleDistance(origin, destination);
+        SingleDistance singleDistance = distanceMatrixConverter.convertSingleDistance(distanceMatrix);
+        return distanceMatrixConverter.convertValueSingleDistance(singleDistance);
     }
 }

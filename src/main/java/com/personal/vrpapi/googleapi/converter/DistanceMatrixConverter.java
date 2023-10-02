@@ -19,4 +19,11 @@ public interface DistanceMatrixConverter {
      * @return SingleDistance
      */
     SingleDistance convertSingleDistance(final DistanceMatrix distanceMatrix);
+
+    /**
+     * get value single distance by single distance
+     * @param singleDistance
+     * @return
+     */
+    Double convertValueSingleDistance(SingleDistance singleDistance);
 }
