@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 public class DepotConverterImpl implements DepotConverter {
     @Override
     public DepotData convertDepot2Data(Depot depot) {
+
         return null;
     }
 
@@ -18,10 +19,6 @@ public class DepotConverterImpl implements DepotConverter {
         Depot depot = new Depot();
         depot.setLat(request.getLat());
         depot.setLng(request.getLng());
-        depot.setLine1(request.getLine1());
-        depot.setLine2(request.getLine2());
-        depot.setDistrict(request.getDistrict());
-        depot.setCity(request.getCity());
         depot.setPostalCode(request.getZipCode());
         depot.setCountry(request.getCountry());
         return depot;

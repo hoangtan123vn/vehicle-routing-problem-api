@@ -1,5 +1,7 @@
 package com.personal.vrpapi.core.maps.core.dto.response;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.personal.vrpapi.core.maps.route.enums.StatusRoute;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -13,6 +15,8 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@JsonIgnoreProperties(ignoreUnknown = true)
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class RouteData {
     private Double costRoute;
     private Double loadingRoute;
@@ -20,4 +24,5 @@ public class RouteData {
     private StatusRoute status;
     private ZonedDateTime dateCompleted;
     private List<RouteDetailData> routeDetails;
+    private VehicleData vehicleData;
 }

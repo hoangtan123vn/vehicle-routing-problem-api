@@ -12,13 +12,10 @@ import lombok.NoArgsConstructor;
 public class DepotData {
     private Double lat;
     private Double lng;
-    private String line1;
-    private String line2;
-    private String hotLine;
-    private String district;
+    private String address;
     private String city;
     private String country;
     private String postalCode;
     private String email;
-    //private VehicleData vehicleData;
+//    private List<VehicleData> vehicles;
 }

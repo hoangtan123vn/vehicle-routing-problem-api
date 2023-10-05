@@ -14,12 +14,9 @@ import java.util.List;
 @Builder
 public class MapRequest {
 
-    @JsonProperty("customers")
-    private List<Long> customerIds;
-
     @JsonProperty("depot")
     private Long depotID;
 
-    @JsonProperty("vehicles")
-    private List<Long> vehicleIds;
+    @JsonProperty("detailIds")
+    private List<Long> detailIds;
 }

@@ -24,4 +24,14 @@ public class Customer extends AbstractUser {
 
     @OneToMany(mappedBy = RouteDetail.Fields.customer, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<RouteDetail> routeDetails;
+
+    @Override
+    public boolean equals(final Object obj) {
+        return super.equals(obj);
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
 }

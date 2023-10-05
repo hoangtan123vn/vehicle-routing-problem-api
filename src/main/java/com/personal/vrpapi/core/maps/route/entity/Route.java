@@ -14,12 +14,15 @@ import javax.persistence.*;
 import java.time.ZonedDateTime;
 import java.util.List;
 
+import static com.personal.vrpapi.core.maps.route.entity.Route.MAP_ID;
+import static com.personal.vrpapi.core.maps.route.entity.Route.VEHICLE_ID;
+
 @Entity
 @Table(name = "routes", uniqueConstraints = {
         @UniqueConstraint(
                 columnNames = {
-                        Route.Fields.map,
-                        Route.Fields.vehicle})
+                        MAP_ID,
+                        VEHICLE_ID})
 })
 @AllArgsConstructor
 @NoArgsConstructor
@@ -27,6 +30,9 @@ import java.util.List;
 @Setter
 @FieldNameConstants
 public class Route extends AbstractEntity {
+
+    public static final String MAP_ID = "map_id";
+    public static final String VEHICLE_ID = "vehicle_id";
 
     @Column
     private ZonedDateTime dateCompleted;
@@ -48,11 +54,11 @@ public class Route extends AbstractEntity {
     private List<RouteDetail> routeDetails;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "map_id")
+    @JoinColumn(name = MAP_ID)
     private Map map;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "vehicle_id")
+    @JoinColumn(name = VEHICLE_ID)
     private Vehicle vehicle;
 
     @Override

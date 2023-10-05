@@ -18,14 +18,8 @@ public class AddDepotRequest {
     @JsonProperty(value = "lng")
     private Double lng;
 
-    @JsonProperty(value ="line1")
-    private String line1;
-
-    @JsonProperty(value ="line2")
-    private String line2;
-
-    @JsonProperty(value ="district")
-    private String district;
+    @JsonProperty(value ="address")
+    private String address;
 
     @JsonProperty(value ="city")
     private String city;
@@ -35,7 +29,4 @@ public class AddDepotRequest {
 
     @JsonProperty(value ="country")
     private String country;
-
-    @JsonProperty(value = "map_id")
-    private Long mapId;
 }

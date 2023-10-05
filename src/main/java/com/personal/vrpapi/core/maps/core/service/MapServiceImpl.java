@@ -1,16 +1,14 @@
 package com.personal.vrpapi.core.maps.core.service;
 
-import com.personal.vrpapi.core.authorization.entity.Customer;
 import com.personal.vrpapi.core.base.exception.NotFoundException;
 import com.personal.vrpapi.core.base.service.EntityService;
-import com.personal.vrpapi.core.maps.core.converter.MapConverter;
 import com.personal.vrpapi.core.maps.core.dto.request.MapRequest;
 import com.personal.vrpapi.core.maps.core.entity.Depot;
 import com.personal.vrpapi.core.maps.core.entity.Map;
-import com.personal.vrpapi.core.maps.core.entity.Vehicle;
 import com.personal.vrpapi.core.maps.core.enums.MapType;
 import com.personal.vrpapi.core.maps.core.repository.MapRepository;
-import com.personal.vrpapi.core.maps.route.service.RouteService;
+import com.personal.vrpapi.core.maps.route.entity.RouteDetail;
+import com.personal.vrpapi.core.maps.route.service.RouteDetailService;
 import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.stereotype.Component;
 
@@ -28,19 +26,10 @@ public class MapServiceImpl implements MapService {
     private MapRepository mapRepository;
 
     @Resource
-    private MapConverter mapConverter;
-
-    @Resource
-    private CustomerService customerService;
-
-    @Resource
-    private RouteService routeService;
-
-    @Resource
-    private VehicleService vehicleService;
-
-    @Resource
     private DepotService depotService;
+
+    @Resource
+    private RouteDetailService routeDetailService;
 
     @Override
     public Map getMap(Long id) {
@@ -59,19 +48,15 @@ public class MapServiceImpl implements MapService {
     @Override
     public Map createMap(MapRequest request) {
         Map map = new Map();
-        if (CollectionUtils.isNotEmpty(request.getCustomerIds())) {
-            List<Customer> customers = customerService.findAllByIdIn(request.getCustomerIds());
-            map.setCustomers(customers);
-        }
 
         if (Objects.nonNull(request.getDepotID())) {
             Depot depot = depotService.findById(request.getDepotID());
             map.setDepot(depot);
         }
 
-        if (CollectionUtils.isNotEmpty(request.getVehicleIds())) {
-            List<Vehicle> vehicles = vehicleService.findAllByIdIn(request.getVehicleIds());
-            map.setVehicles(vehicles);
+        if (CollectionUtils.isNotEmpty(request.getDetailIds())) {
+            List<RouteDetail> routeDetails = routeDetailService.findAllByIdIn(request.getDetailIds());
+            map.setNodes(routeDetails);
         }
 
         map.setIsActive(true);

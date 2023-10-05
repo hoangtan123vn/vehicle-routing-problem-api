@@ -42,10 +42,6 @@ public class Vehicle extends AbstractEntity {
     @JoinColumn
     private Depot depot;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn
-    private Map map;
-
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Route> routes;
 
