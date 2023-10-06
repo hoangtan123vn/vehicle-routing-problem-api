@@ -6,4 +6,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/details")
 public class RouteDetailController {
+
+//    @PostMapping
+//    RouteDetailData createRouteDetail() {
+//
+//    }
 }

@@ -24,4 +24,7 @@ public class RouteDetailData {
     private ZonedDateTime dateCompleted;
     private Boolean isRouted;
     private StatusRoute status;
+    private Double lat;
+    private Double lng;
+    private String postalCode;
 }

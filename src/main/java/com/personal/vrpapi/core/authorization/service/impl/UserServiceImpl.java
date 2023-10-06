@@ -11,6 +11,7 @@ import com.personal.vrpapi.core.authorization.service.JwtTokenService;
 import com.personal.vrpapi.core.authorization.service.UserService;
 import com.personal.vrpapi.core.base.entity.AbstractUser;
 import com.personal.vrpapi.core.base.exception.BaseException;
+import com.personal.vrpapi.core.base.exception.NotFoundException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -48,6 +49,9 @@ public class UserServiceImpl implements UserService {
 
     @Resource
     private PasswordEncoder passwordEncoder;
+
+    @Resource
+    private AbstractUserRepository abstractUserRepository;
 
     @Override
     public JwtResponse authentication(LoginRequest loginRequest, RoleEnum roleEnum) {
@@ -87,4 +91,11 @@ public class UserServiceImpl implements UserService {
             throw new BaseException("Username is existed");
         }
     }
+
+    @Override
+    public AbstractUser findById(Long userId) {
+        return abstractUserRepository.
+                findById(userId).orElseThrow(() -> new NotFoundException(String.format("User with %s not found", userId)));
+    }
+
 }

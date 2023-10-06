@@ -44,9 +44,6 @@ public class Route extends AbstractEntity {
     private Double loadingRoute;
 
     @Column
-    private Double capacityRoute;
-
-    @Column
     @Enumerated(EnumType.STRING)
     private StatusRoute statusRoute;
 

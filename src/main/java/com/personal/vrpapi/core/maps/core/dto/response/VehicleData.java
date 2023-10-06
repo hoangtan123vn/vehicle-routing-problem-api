@@ -18,4 +18,6 @@ public class VehicleData {
     private Long vehicleId;
     private Double capacity;
     private VehicleType type;
+    private DepotData depotData;
+    private Long driverId;
 }

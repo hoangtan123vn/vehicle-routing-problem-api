@@ -56,7 +56,9 @@ public class MapServiceImpl implements MapService {
 
         if (CollectionUtils.isNotEmpty(request.getDetailIds())) {
             List<RouteDetail> routeDetails = routeDetailService.findAllByIdIn(request.getDetailIds());
-            map.setNodes(routeDetails);
+            if (CollectionUtils.isNotEmpty(routeDetails)) {
+                map.setNodes(routeDetails);
+            }
         }
 
         map.setIsActive(true);

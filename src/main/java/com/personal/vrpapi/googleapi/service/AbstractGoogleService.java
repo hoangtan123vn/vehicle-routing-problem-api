@@ -27,7 +27,9 @@ public abstract class AbstractGoogleService {
                     .url(endpoint)
                     .method(String.valueOf(httpMethod), requestBody)
                     .build();
+            LOGGER.info("SEND API GOOGLE REQUEST {}", requestBody);
             Response response = client.newCall(request).execute();
+            LOGGER.info("SEND API GOOGLE RESPONSE {}", response);
             if (response.isSuccessful()) {
                 T t = readValue(clazz, response);
                 if (Objects.nonNull(t)) {

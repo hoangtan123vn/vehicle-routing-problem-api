@@ -5,6 +5,7 @@ import com.personal.vrpapi.core.authorization.dto.request.UserRequest;
 import com.personal.vrpapi.core.authorization.dto.response.JwtResponse;
 import com.personal.vrpapi.core.authorization.dto.response.UserData;
 import com.personal.vrpapi.core.authorization.enums.RoleEnum;
+import com.personal.vrpapi.core.base.entity.AbstractUser;
 
 public interface UserService {
 
@@ -23,4 +24,11 @@ public interface UserService {
      * @return User
      */
     UserData createUser(UserRequest userRequest, RoleEnum roleEnum);
+
+    /**
+     *
+     * @param userId
+     * @return
+     */
+    AbstractUser findById(Long userId);
 }
