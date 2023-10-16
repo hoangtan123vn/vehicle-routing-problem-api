@@ -1,8 +1,10 @@
 package com.personal.vrpapi.core.maps.core.converter;
 
-import com.personal.vrpapi.core.maps.core.dto.request.AddDepotRequest;
+import com.personal.vrpapi.core.maps.core.dto.request.DepotRequest;
 import com.personal.vrpapi.core.maps.core.dto.response.DepotData;
 import com.personal.vrpapi.core.maps.core.entity.Depot;
+
+import java.util.List;
 
 public interface DepotConverter {
 
@@ -18,5 +20,12 @@ public interface DepotConverter {
      * @param request
      * @return Depot
      */
-    Depot convertAddDepotRequest2Depot(AddDepotRequest request);
+    Depot convertAddDepotRequest2Depot(DepotRequest request);
+
+    /**
+     *
+     * @param depots
+     * @return
+     */
+    List<DepotData> convertAll(List<Depot> depots);
 }

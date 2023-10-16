@@ -20,8 +20,8 @@ public class VehicleController {
     private VehicleConverter vehicleConverter;
 
     @PostMapping("/{id}")
-    VehicleData registerVehicle(@RequestBody RegisterVehicleRequest request, @PathVariable Long driverId) {
-        return vehicleConverter.convert(vehicleService.registerVehicle(driverId, request));
+    VehicleData registerVehicle(@RequestBody RegisterVehicleRequest request, @PathVariable Long id) {
+        return vehicleConverter.convert(vehicleService.registerVehicle(id, request));
     }
 
     @GetMapping("/{id}")

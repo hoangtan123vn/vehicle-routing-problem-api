@@ -35,6 +35,7 @@ public class RouteConverterImpl implements RouteConverter {
     @Override
     public RouteDetailData convert(RouteDetail route) {
         return RouteDetailData.builder()
+                .id(route.getId())
                 .customerId(route.getCustomer().getId())
                 .isRouted(route.getIsRouted())
                 .isShipped(route.getIsShipped())

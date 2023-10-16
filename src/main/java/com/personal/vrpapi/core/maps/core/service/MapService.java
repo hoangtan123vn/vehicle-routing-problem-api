@@ -26,4 +26,34 @@ public interface MapService {
      * @return
      */
     Map createMap(MapRequest request);
+
+    /**
+     *
+     * @param mapId
+     * @return
+     */
+    Map initMap(Long mapId);
+
+    /**
+     *
+     * @param map
+     * @return
+     */
+    Map save(Map map);
+
+    /**
+     *
+     * @param mapId
+     * @param customerRequest
+     * @return
+     */
+    Map assignRouteDetails(Long mapId, Long detailId);
+
+    /**
+     *
+     * @param mapId
+     * @param depotId
+     * @return
+     */
+    Map assignDepot(Long mapId, Long depotId);
 }

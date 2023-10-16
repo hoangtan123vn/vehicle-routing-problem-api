@@ -7,6 +7,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.time.ZonedDateTime;
 
@@ -14,12 +15,13 @@ import java.time.ZonedDateTime;
 @Setter
 @AllArgsConstructor
 @Builder
-public class Response implements Serializable {
+public class Response<T> implements Serializable {
 
+    @Serial
     private static final long serialVersionUID = 1L;
 
     @JsonProperty("data")
-    private Object data;
+    private T data;
 
     @JsonProperty("timestamp")
     private ZonedDateTime timestamp;

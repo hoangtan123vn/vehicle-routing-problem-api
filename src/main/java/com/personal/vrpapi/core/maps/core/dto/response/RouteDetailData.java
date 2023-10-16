@@ -17,6 +17,7 @@ import java.time.ZonedDateTime;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class RouteDetailData {
+    private Long id;
     private Long driverId;
     private Long customerId;
     private Long sequence;
@@ -27,4 +28,5 @@ public class RouteDetailData {
     private Double lat;
     private Double lng;
     private String postalCode;
+    private String address;
 }

@@ -10,10 +10,10 @@ import lombok.NoArgsConstructor;
 @Data
 @Builder
 public class DepotData {
+    private Long id;
     private Double lat;
     private Double lng;
     private String address;
-    private String city;
     private String country;
     private String postalCode;
     private String email;

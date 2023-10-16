@@ -41,8 +41,8 @@ public class UserConverterImpl implements UserConverter {
         user.setAddress(request.getAddress());
         user.setFirstName(request.getFirstName());
         user.setEmail(request.getEmail());
-        user.setLastName(user.getLastName());
-        user.setPhoneNumber(user.getPhoneNumber());
+        user.setLastName(request.getLastName());
+        user.setPhoneNumber(request.getPhoneNumber());
         return user;
     }
 }

@@ -43,4 +43,9 @@ public class CustomerServiceImpl implements CustomerService {
         }
         return Collections.emptyList();
     }
+
+    @Override
+    public Customer findById(Long customerId) {
+        return entityService.findById(customerId, Customer.class);
+    }
 }

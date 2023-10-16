@@ -12,30 +12,27 @@ import com.personal.vrpapi.core.maps.route.entity.RouteDetail;
 import com.personal.vrpapi.core.maps.route.service.RouteDetailService;
 import com.personal.vrpapi.core.maps.route.service.RouteService;
 import com.personal.vrpapi.googleapi.service.GoogleService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.Resource;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
 @Component
+@RequiredArgsConstructor
 public class InstraSearchServiceImpl implements SearchService {
 
-    @Resource
-    private GoogleService googleService;
 
-    @Resource
-    private RouteConverter routeConverter;
+    private final GoogleService googleService;
 
-    @Resource
-    private RouteService routeService;
+    private final RouteConverter routeConverter;
 
-    @Resource
-    private VehicleService vehicleService;
+    private final RouteService routeService;
 
-    @Resource
-    private RouteDetailService routeDetailService;
+    private final VehicleService vehicleService;
+
+    private final RouteDetailService routeDetailService;
 
     @Override
     @Transactional

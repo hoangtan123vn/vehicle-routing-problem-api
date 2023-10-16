@@ -9,7 +9,7 @@ import com.personal.vrpapi.core.maps.core.enums.VehicleType;
 import com.personal.vrpapi.core.maps.core.factory.LocalSearchFactory;
 import com.personal.vrpapi.core.maps.core.service.DepotService;
 import com.personal.vrpapi.core.maps.core.service.MapService;
-import com.personal.vrpapi.core.maps.core.strategy.LocalSearchStrategy;
+import com.personal.vrpapi.core.maps.core.service.SearchService;
 import com.personal.vrpapi.core.maps.route.dto.request.DistanceRequest;
 import com.personal.vrpapi.core.maps.route.dto.request.InitSearchRequest;
 import com.personal.vrpapi.core.maps.route.entity.Route;
@@ -56,12 +56,12 @@ public class RouteController {
 
     @PostMapping("/init")
     List<RouteData> initRoutesOnMap(@RequestBody @Valid InitSearchRequest request) {
-        LocalSearchStrategy localSearchStrategy = localSearchFactory.getInstance(LocalSearchType.INSTRA);
+        SearchService searchService = localSearchFactory.getInstance(LocalSearchType.INSTRA);
         Depot depot = depotService.findById(request.getDepotId());
         Map map = mapService.getMap(request.getMapId());
         List<RouteDetail> routeDetails = routeDetailService.findAllByIdIn(request.getRouteDetailIds());
 
-        List<Route> routes = localSearchStrategy.getService().search(routeDetails, depot, map, VehicleType.ALL);
+        List<Route> routes = searchService.search(routeDetails, depot, map, VehicleType.ALL);
         return routeConverter.convertAll(routes);
     }
 }

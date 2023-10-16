@@ -25,4 +25,11 @@ public interface CustomerService {
      * @return List<Customer>
      */
     List<Customer> findAllByIdIn(List<Long> ids);
+
+    /**
+     * find Customer by CustomerId
+     * @param customerId
+     * @return
+     */
+    Customer findById(Long customerId);
 }

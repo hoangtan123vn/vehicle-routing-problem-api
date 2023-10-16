@@ -5,6 +5,7 @@ import com.personal.vrpapi.core.maps.core.converter.MapConverter;
 import com.personal.vrpapi.core.maps.core.converter.RouteConverter;
 import com.personal.vrpapi.core.maps.core.dto.response.MapData;
 import com.personal.vrpapi.core.maps.core.entity.Map;
+import com.personal.vrpapi.core.maps.route.converter.RouteDetailConverter;
 import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.stereotype.Component;
 
@@ -22,6 +23,9 @@ public class MapConverterImpl implements MapConverter {
     @Resource
     private RouteConverter routeConverter;
 
+    @Resource
+    private RouteDetailConverter routeDetailConverter;
+
     @Override
     public MapData convert(Map map) {
         return MapData.builder()
@@ -29,7 +33,9 @@ public class MapConverterImpl implements MapConverter {
                 .id(map.getId())
                 .depot(Objects.nonNull(map.getDepot()) ? depotConverter.convertDepot2Data(map.getDepot()) : null)
                 .routes(CollectionUtils.isNotEmpty(map.getRoutes()) ?
-                        map.getRoutes().stream().map(route -> routeConverter.convert(route)).toList() : Collections.emptyList())
+                        routeConverter.convertAll(map.getRoutes()) : Collections.emptyList())
+                .routeDetails(CollectionUtils.isNotEmpty(map.getNodes()) ?
+                        routeDetailConverter.convertAll(map.getNodes()) : Collections.emptyList())
                 .build();
     }
 

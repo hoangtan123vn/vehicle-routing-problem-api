@@ -50,8 +50,18 @@ public class MapController {
         return mapConverter.convert(mapService.createMap(request));
     }
 
-//    @PatchMapping
-//    MapData updateMap(@RequestBody MapRequest request) {
-//        return mapConverter.convert()
-//    }
+    @PostMapping("/{id}")
+    MapData intiMap(@PathVariable Long id) {
+        return mapConverter.convert(mapService.initMap(id));
+    }
+
+    @PatchMapping("/{id}/route-details/{detailId}")
+    MapData assignRouteDetailsToMap(@PathVariable Long id, @PathVariable Long detailId) {
+        return mapConverter.convert(mapService.assignRouteDetails(id, detailId));
+    }
+
+    @PatchMapping("/{id}/depot/{depotId}")
+    MapData assignDepotToMap(@PathVariable Long id, @PathVariable Long depotId) {
+        return mapConverter.convert(mapService.assignDepot(id, depotId));
+    }
 }

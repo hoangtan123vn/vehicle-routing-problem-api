@@ -6,7 +6,7 @@ import com.personal.vrpapi.core.maps.core.dto.response.CustomerData;
 import com.personal.vrpapi.core.maps.core.entity.Vehicle;
 import com.personal.vrpapi.core.maps.core.service.CustomerService;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -27,10 +27,10 @@ public class TestController {
     private CustomerConverter customerConverter;
 
     @GetMapping("/vehicles")
-    public Page<Vehicle> getVehicles() {
+    public Page<Vehicle> getVehicles(Pageable pageable) {
         return entityService.search(Vehicle.class, (root, query, criteriaBuilder)  -> {
             return null;
-        }, PageRequest.of(0, 5));
+        }, pageable);
     }
 
     @GetMapping("/customers")
