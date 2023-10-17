@@ -23,7 +23,7 @@ public interface UserService {
      * @param roleEnum
      * @return User
      */
-    UserData createUser(UserRequest userRequest, RoleEnum roleEnum);
+    UserData createUser(UserRequest userRequest, RoleEnum role);
 
     /**
      *

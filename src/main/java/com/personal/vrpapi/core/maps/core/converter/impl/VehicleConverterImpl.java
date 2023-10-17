@@ -17,9 +17,9 @@ public class VehicleConverterImpl implements VehicleConverter {
 
     @Override
     public VehicleData convert(Vehicle vehicle) {
-        if (Objects.isNull(vehicle)) {
+        if (Objects.nonNull(vehicle)) {
             VehicleData vehicleData = new VehicleData();
-            vehicleData.setVehicleId(vehicle.getId());
+            vehicleData.setVehicleId(vehicleData.getVehicleId());
             vehicleData.setDepotData(depotConverter.convertDepot2Data(vehicle.getDepot()));
             vehicleData.setType(vehicle.getVehicleType());
             vehicleData.setCapacity(vehicle.getCapacity());

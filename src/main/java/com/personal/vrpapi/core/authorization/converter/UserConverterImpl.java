@@ -7,9 +7,11 @@ import com.personal.vrpapi.core.authorization.entity.Driver;
 import com.personal.vrpapi.core.authorization.enums.RoleEnum;
 import com.personal.vrpapi.core.authorization.repository.RoleRepository;
 import com.personal.vrpapi.core.base.entity.AbstractUser;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @Component
 public class UserConverterImpl implements UserConverter {
@@ -20,6 +22,7 @@ public class UserConverterImpl implements UserConverter {
     @Override
     public UserData convertUserToUserData(AbstractUser user){
         UserData userData = new UserData();
+        userData.setId(user.getId());
         userData.setUsername(user.getUserName());
         userData.setAddress(user.getAddress());
         userData.setFirstName(user.getFirstName());
@@ -30,9 +33,9 @@ public class UserConverterImpl implements UserConverter {
     }
 
     @Override
-    public AbstractUser convertUserRequestToUser(UserRequest request) {
+    public AbstractUser convertUserRequestToUser(UserRequest request, RoleEnum role) {
         AbstractUser user;
-        if (RoleEnum.DRIVER.equals(request.getRole())) {
+        if (RoleEnum.DRIVER.equals(role)) {
             user = new Driver();
         } else {
             user = new Customer();
@@ -44,5 +47,10 @@ public class UserConverterImpl implements UserConverter {
         user.setLastName(request.getLastName());
         user.setPhoneNumber(request.getPhoneNumber());
         return user;
+    }
+
+    @Override
+    public Page<UserData> convertAll(List<AbstractUser> user) {
+        return null;
     }
 }

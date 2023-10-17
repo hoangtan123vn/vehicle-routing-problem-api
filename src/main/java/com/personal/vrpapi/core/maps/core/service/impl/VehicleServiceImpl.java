@@ -11,7 +11,6 @@ import com.personal.vrpapi.core.maps.core.entity.Depot;
 import com.personal.vrpapi.core.maps.core.entity.Vehicle;
 import com.personal.vrpapi.core.maps.core.enums.VehicleType;
 import com.personal.vrpapi.core.maps.core.exception.ValidVehicleIsEmptyException;
-import com.personal.vrpapi.core.maps.core.repository.DriverRepository;
 import com.personal.vrpapi.core.maps.core.repository.VehicleRepository;
 import com.personal.vrpapi.core.maps.core.service.DepotService;
 import com.personal.vrpapi.core.maps.core.service.VehicleService;
@@ -34,9 +33,6 @@ public class VehicleServiceImpl implements VehicleService {
 
     @Resource
     private DepotService depotService;
-
-    @Resource
-    private DriverRepository driverRepository;
 
     @Override
     public List<Vehicle> findAllByIdIn(List<Long> ids) {
@@ -83,9 +79,8 @@ public class VehicleServiceImpl implements VehicleService {
     }
 
     @Override
-    public Vehicle getVehicle(Long driverId) {
-        Driver driver = driverRepository.findById(driverId)
-                .orElseThrow(() -> new NotFoundException(String.format("Driver with %s not found", driverId)));
-        return driver.getVehicle();
+    public Vehicle getVehicle(Long id) {
+       return vehicleRepository.findById(id)
+               .orElseThrow(() -> new NotFoundException(String.format("Vehicle with %s not found", id)));
     }
 }

@@ -3,7 +3,6 @@ package com.personal.vrpapi.core.authorization.dto.request;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.personal.vrpapi.core.authorization.enums.RoleEnum;
 import lombok.Data;
 
 import javax.validation.constraints.NotBlank;
@@ -39,9 +38,4 @@ public class UserRequest {
     @JsonProperty
     @NotBlank(message = "email is required")
     private String email;
-
-    @JsonProperty
-    @NotBlank(message = "role is required")
-    private RoleEnum role;
-
 }

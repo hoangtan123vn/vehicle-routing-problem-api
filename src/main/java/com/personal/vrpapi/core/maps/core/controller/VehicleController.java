@@ -15,7 +15,6 @@ public class VehicleController {
     @Resource
     private VehicleService vehicleService;
 
-
     @Resource
     private VehicleConverter vehicleConverter;
 
@@ -25,7 +24,7 @@ public class VehicleController {
     }
 
     @GetMapping("/{id}")
-    VehicleData getVehicle(@PathVariable Long driverId) {
-        return vehicleConverter.convert(vehicleService.getVehicle(driverId));
+    VehicleData getVehicle(@PathVariable Long id) {
+        return vehicleConverter.convert(vehicleService.getVehicle(id));
     }
 }

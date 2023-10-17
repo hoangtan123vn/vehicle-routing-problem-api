@@ -17,6 +17,7 @@ import com.personal.vrpapi.core.maps.route.entity.RouteDetail;
 import com.personal.vrpapi.core.maps.route.service.RouteDetailService;
 import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -82,6 +83,7 @@ public class MapServiceImpl implements MapService {
     }
 
     @Override
+    @Transactional
     public Map initMap(Long mapId) {
         Map map = getMap(mapId);
         Depot depot = map.getDepot();
@@ -95,7 +97,7 @@ public class MapServiceImpl implements MapService {
 
         SearchService searchService = localSearchFactory.getInstance(LocalSearchType.INSTRA);
         //test
-        List<Route> routes = searchService.search(routeDetails, depot, map, VehicleType.TRUCK2000);
+        List<Route> routes = searchService.search(routeDetails, depot, map, VehicleType.ALL);
         map.setRoutes(routes);
         return map;
     }

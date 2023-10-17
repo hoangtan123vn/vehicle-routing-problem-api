@@ -83,7 +83,7 @@ public class UserServiceImpl implements UserService {
     public UserData createUser(UserRequest userRequest, RoleEnum roleEnum) {
         AbstractUser user = userRepository.findByUserName(userRequest.getUsername());
         if (Objects.isNull(user)){
-            user = userConverter.convertUserRequestToUser(userRequest);
+            user = userConverter.convertUserRequestToUser(userRequest, roleEnum);
             user.setPassword(passwordEncoder.encode(userRequest.getPassword()));
             userRepository.save(user);
             return userConverter.convertUserToUserData(user);

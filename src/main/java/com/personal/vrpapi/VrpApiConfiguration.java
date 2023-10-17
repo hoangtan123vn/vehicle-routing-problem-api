@@ -23,7 +23,7 @@ import java.util.*;
 @EnableAutoConfiguration
 @EntityScan(basePackages = {"com.personal.vrpapi.*"})
 @EnableJpaRepositories(basePackages = {"com.personal.vrpapi.*"})
-@EnableTransactionManagement
+@EnableTransactionManagement(proxyTargetClass = true)
 public class VrpApiConfiguration {
 
     @Bean
