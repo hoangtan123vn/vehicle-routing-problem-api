@@ -70,7 +70,10 @@ public class InstraSearchServiceImpl implements SearchService {
 
             for (RouteDetail routeDetail : routeDetails) {
                 if (Boolean.FALSE.equals(routeDetail.getIsRouted())) {
-                    Double trialCost = googleService.getValueSingleDistance(lastInTheRoute.getAddress(), routeDetail.getShippingAddress());
+                    Double trialCost = googleService.
+                            getValueSingleDistance(lastInTheRoute instanceof Depot
+                                    ? lastInTheRoute.getAddress()
+                                    : ((RouteDetail) lastInTheRoute).getShippingAddress(), routeDetail.getShippingAddress());
                     if (trialCost < bestCostForTheNextOne && routeDetail.getDemand() <= capacity) {
                         positionOfTheNextOne = routeDetails.indexOf(routeDetail);
                         bestCostForTheNextOne = trialCost;
@@ -89,7 +92,7 @@ public class InstraSearchServiceImpl implements SearchService {
                 routeDetailService.save(node);
             } else {
                 nodes.add(depot);
-                costRoute += googleService.getValueSingleDistance(lastInTheRoute.getAddress(), depot.getAddress());
+                costRoute += googleService.getValueSingleDistance(lastInTheRoute instanceof RouteDetail routeDetail ? routeDetail.getShippingAddress() : lastInTheRoute.getAddress(), depot.getAddress());
                 isFinal = true;
             }
         }

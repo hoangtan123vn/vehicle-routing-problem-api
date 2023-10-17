@@ -44,7 +44,7 @@ public interface MapService {
     /**
      *
      * @param mapId
-     * @param customerRequest
+     * @param detailId
      * @return
      */
     Map assignRouteDetails(Long mapId, Long detailId);
