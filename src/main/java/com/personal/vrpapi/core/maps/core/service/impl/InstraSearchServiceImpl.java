@@ -39,7 +39,6 @@ public class InstraSearchServiceImpl implements SearchService {
     public List<Route> search(List<RouteDetail> routeDetails, Depot depot, com.personal.vrpapi.core.maps.core.entity.Map map, VehicleType type) {
         List<Route> routes = new ArrayList<>();
         List<Vehicle> vehicles = vehicleService.findAllByDepotAndFreeWithType(depot, type);
-
         for (Vehicle vehicle : vehicles) {
             Route route = buildRouteforVehicle(routeDetails, depot, map, vehicle);
             routeService.save(route);
