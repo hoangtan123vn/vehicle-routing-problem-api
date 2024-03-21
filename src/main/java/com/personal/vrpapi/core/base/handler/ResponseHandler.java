@@ -12,6 +12,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
 
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
+import java.util.Collection;
 
 @ControllerAdvice
 public class ResponseHandler implements ResponseBodyAdvice<Object> {
@@ -35,11 +36,15 @@ public class ResponseHandler implements ResponseBodyAdvice<Object> {
                     .build();
         }
 
-        return Response.builder()
-                .data(body)
-                .timestamp(ZonedDateTime.now())
-                .pageable(buildDefaultPageable())
-                .build();
+        if (body instanceof Collection<?> collection) {
+            return Response.builder()
+                    .data(collection)
+                    .timestamp(ZonedDateTime.now())
+                    .pageable(buildDefaultPageable())
+                    .build();
+        }
+
+        return Response.builder().data((Object) body).build();
     }
 
     private Pageable buildPageable(Page<?> page) {

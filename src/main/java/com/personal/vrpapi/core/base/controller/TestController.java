@@ -1,5 +1,6 @@
 package com.personal.vrpapi.core.base.controller;
 
+import com.personal.vrpapi.core.base.entity.AbstractEntity;
 import com.personal.vrpapi.core.base.service.EntityService;
 import com.personal.vrpapi.core.maps.core.converter.CustomerConverter;
 import com.personal.vrpapi.core.maps.core.dto.response.CustomerData;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @RestController
 @RequestMapping("/test")
@@ -33,8 +35,23 @@ public class TestController {
         }, pageable);
     }
 
+    @GetMapping("/id")
+    public AbstractEntity getVehicle() {
+        return entityService.findById(15L, Vehicle.class);
+    }
+
     @GetMapping("/customers")
     public Page<CustomerData> getCustomers() {
         return customerConverter.convertAllPaging(customerService.getAllCustomersWithPaging());
+    }
+
+    @GetMapping("/list")
+    public List<CustomerData> getCustomersData() {
+        return customerConverter.convertAll(customerService.getAllCustomers());
+    }
+
+    @GetMapping("/test")
+    public String hello() {
+        return "hello world";
     }
 }

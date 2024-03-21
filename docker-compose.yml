@@ -1,18 +1,20 @@
 version: "3.0"
 services:
   vrp :
+#    restart: always
     image : vrp-api
     container_name:  vrp-api
     ports:
       - 8080:8080
     environment:
-      SPRING_PROFILES_ACTIVE : qa
-      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/vrp-qa
+      SPRING_PROFILES_ACTIVE : dev
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/vrp-dev
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: root
     depends_on:
       - mysql
   mysql :
+#    restart: always
     image : mysql
     container_name: mysql
     ports:
@@ -20,7 +22,7 @@ services:
     environment:
       MYSQL_USER: root
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: vrp-qa
+      MYSQL_DATABASE: vrp-dev
       LANG: C.UTF_8
     volumes:
       - mysql-data:/var/lib/mysql

@@ -84,13 +84,13 @@ public class JwtTokenServiceImpl implements JwtTokenService {
     }
 
     @Override
-    public AbstractUser getCurrentUser(){
+    public AbstractUser getCurrentUser() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         Object principal = authentication.getPrincipal();
         if (principal instanceof UserDetails userDetails) {
             String username = userDetails.getUsername();
             return userRepository.findByUserName(username);
-        } else{
+        } else {
             throw new BaseException("User not logged in");
         }
     }
